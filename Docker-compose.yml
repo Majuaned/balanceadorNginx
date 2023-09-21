@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  balanceador:
+    image: nginx
+    container_name: balanceNginx
+    ports:
+      - "8088:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - networks-node
+
+  web1:
+    build:
+      context: ./web 1
+    container_name: tp6web1
+    ports:
+      - "4001:80"
+    networks:
+      - networks-node
+
+  web2:
+    build:
+      context: ./web 2
+    container_name: tp6web2
+    ports:
+      - "4002:80"
+    networks:
+      - networks-node
+      
+networks:
+  networks-node:
